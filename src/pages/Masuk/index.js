@@ -1,24 +1,24 @@
 import React from 'react'
 import { StyleSheet, Text, View} from 'react-native'
 import { Button, Gap, AuthHeader, TextInput, TextSpan } from '../../components'
-// import { useForm } from '../../utils'
-// import Axios from 'axios'
+import { useForm } from '../../utils'
+import axios from 'axios'
 
 const Masuk = ({navigation}) => {
-  // const [form, setForm] = useForm({
-  //   email: '',
-  //   password: ''
-  // })
+  const [form, setForm] = useForm({
+    email: '',
+    password: ''
+  })
 
-  // const onSubmit = () => {
-  //   Axios.post('http://10.0.2.2:8000/api/login', form)
-  //     .then((res) => {
-  //       console.log('success', res)
-  //     })
-  //     .catch((err) => {
-  //       console.log('error', err)
-  //     });
-  // }
+  const onSubmit = () => {
+    axios.post('http://10.0.2.2:8000/api/login', form)
+      .then((res) => {
+        console.log('success', res)
+      })
+      .catch((err) => {
+        console.log('error', err)
+      });
+  }
 
   return (
     <View style={{backgroundColor:'#FFF', flex:1}}>
@@ -30,14 +30,14 @@ const Masuk = ({navigation}) => {
         <TextInput 
           label={"Email atau nomor telepon"} 
           placeholder={"Masukkan email atau nomor telepon Anda"}
-          //value={form.email}
-          //onChangeText={(value)=> setForm('email', value)}
+          value={form.email}
+          onChangeText={(value)=> setForm('email', value)}
         />
         <TextInput 
           label={"Kata sandi"} 
           placeholder={"Masukkan kata sandi"}
-          //value={form.password}
-          //onChangeText={(value)=> setForm('password', value)}
+          value={form.password}
+          onChangeText={(value)=> setForm('password', value)}
           secureTextEntry
         />
         <Gap height={24}/>
@@ -47,8 +47,8 @@ const Masuk = ({navigation}) => {
           color='#FFF'
           brWidth={2} 
           brColor='#5CB8FF'
-          // onPress={onSubmit}
-          onPress={() => navigation.replace('MainApp')}
+          onPress={onSubmit}
+          // onPress={() => navigation.replace('MainApp')}
         />
         <Gap height={24}/>
         <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
