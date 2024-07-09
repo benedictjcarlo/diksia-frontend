@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const TextSpanCard = ({textSpan, span, color, fontWeight, fontSize}) => {
+const TextSpanCard = ({textSpan, span, color, colorS, fontWeight, fontSize}) => {
     return (
     <View style={{flexDirection: 'row'}}>
         <Text style={styles.textSpan(color, fontWeight, fontSize)}>{textSpan}</Text>
-        <Text style={styles.span(fontSize)}>{span}</Text>
+        <Text style={styles.span(colorS, fontSize)}>{span}</Text>
     </View>
   )
 }
@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
         fontSize: fontSize,
     }),
 
-    span: (fontSize) => ({
+    span: (colorS,fontSize) => ({
+        color: colorS,
         fontSize: fontSize,
     }),
 })

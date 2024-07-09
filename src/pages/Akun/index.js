@@ -3,9 +3,15 @@ import React from 'react'
 import { AkunKeluar, AkunMenu, DefaultHeader, Gap } from '../../components'
 import { IcAkunDefault, IcRightArrow } from '../../assets'
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Akun = () => {
   const navigation = useNavigation()
+  const keluarAkun = () => {
+    AsyncStorage.multiRemove(['userProfile', 'token']).then(() => {
+      navigation.reset({index: 0, routes: [{name: 'Masuk'}]})
+    })
+  }
   return (
     <View style={{backgroundColor: '#FFF', flex:1}}>
       <DefaultHeader title={"Akun"}/>
@@ -24,7 +30,7 @@ const Akun = () => {
       <AkunMenu title={'Bantuan'} onPress={() => navigation.navigate('Bantuan')}/>
       <AkunMenu title={'Syarat dan Ketentuan'} onPress={() => navigation.navigate('SyaratKetentuan')}/>
       <AkunMenu title={'Tentang Diksia'} onPress={() => navigation.navigate('TentangDiksia')}/>
-      <AkunKeluar title={'Keluar'} onPress={() => navigation.navigate('Masuk')}/>
+      <AkunKeluar title={'Keluar'} onPress={keluarAkun}/>
     </View>
   )
 }

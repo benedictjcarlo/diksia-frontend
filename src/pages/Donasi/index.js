@@ -1,9 +1,19 @@
+import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button, ContentDG, DonationCard, DonationCardList, Gap, HomeHeader } from '../../components'
-import { DonationDummy1, DonationDummy2, DonationDummy3,  } from '../../assets'
+import { getDonationData } from '../../redux/action'
 
 const Donasi = ({navigation}) => {
+  const dispatch = useDispatch();
+  
+  const {donation} = useSelector(state => state.home)
+
+  useEffect(() => {
+    dispatch(getDonationData())
+  })
+
+
   return (
     <ScrollView vertical style={{backgroundColor:'white'}} showsVerticalScrollIndicator={false}>
       <HomeHeader />
@@ -12,11 +22,19 @@ const Donasi = ({navigation}) => {
       <Text style={styles.sectionTitle}>Penggalangan Dana Tercapai</Text>
       <Gap height={12}/>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <Gap width={20}/>
-          <DonationCard image={DonationDummy1} onPress={() => navigation.navigate('DetailDonasi')}/>
-          <DonationCard image={DonationDummy2} onPress={() => navigation.navigate('DetailDonasi')}/>
-          <DonationCard image={DonationDummy3} onPress={() => navigation.navigate('DetailDonasi')}/>
-          <DonationCard image={DonationDummy1} onPress={() => navigation.navigate('DetailDonasi')}/>
+        <Gap width={20}/>
+        {donation.slice(0, 5).map(itemDonation => {
+          return (
+            <DonationCard
+              key={itemDonation.id}
+              title={itemDonation.title}
+              image={{ uri: itemDonation.picturePath}}
+              donationAmount={itemDonation.donationAmount}
+              donationNeed={itemDonation.donationNeed}
+              deadline={itemDonation.deadline}
+            />
+          )
+        })}
       </ScrollView>
       <Gap height={24}/>
       <Text style={styles.sectionTitle}>Bantu Wujudkan Impian Mereka</Text>
@@ -51,11 +69,18 @@ const Donasi = ({navigation}) => {
       <Gap height={12}/>
 
       <View style={{marginHorizontal: 20}}>
-        <DonationCardList image={DonationDummy1} onPress={() => navigation.navigate('DetailDonasi')}/>
-        <Gap height={12}/>
-        <DonationCardList image={DonationDummy2} onPress={() => navigation.navigate('DetailDonasi')}/>
-        <Gap height={12}/>
-        <DonationCardList image={DonationDummy3} onPress={() => navigation.navigate('DetailDonasi')}/>
+        {donation.slice(0, 5).map(itemDonation => {
+          return (
+          <DonationCardList
+            key={itemDonation.id}
+            title={itemDonation.title}
+            image={{ uri: itemDonation.picturePath}}
+            donationAmount={itemDonation.donationAmount}
+            donationNeed={itemDonation.donationNeed}
+            deadline={itemDonation.deadline}
+          />
+          )
+        })}
       </View>
       <Gap height={24}/>
     </ScrollView>

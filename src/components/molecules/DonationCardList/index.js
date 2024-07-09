@@ -4,17 +4,17 @@ import { IcVerified } from '../../../assets'
 import * as Progress from 'react-native-progress'
 import { Gap, TextSpanCard } from '../../atoms'
 
-const DonationCardList = ({image, onPress}) => {
+const DonationCardList = ({image, title, donationAmount, donationNeed, deadline, onPress}) => {
   return (
     <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
       <View style={styles.container}>
           <View style={{flexDirection: 'row'}}>
               <Image source={image} style={styles.image}/>
               <View style={styles.cardContainer}>
-                  <Text style={styles.title}>Laptop untuk Nana, wujudkan impian Nana</Text>
+                  <Text style={styles.title}>{title}</Text>
                   <Gap height={6}/>
                   <Progress.Bar 
-                  progress={4000000/5300000}
+                  progress={donationAmount/donationNeed}
                   color='#FF893E' unfilledColor='#D4D4D4'
                   borderColor='#D4D4D4' 
                   borderWidth={0.1}
@@ -30,14 +30,16 @@ const DonationCardList = ({image, onPress}) => {
                   <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                   <TextSpanCard 
                   color={'#5CB8FF'}
-                  textSpan={'Rp 2.133.000'} 
+                  colorS={'#212121'}
+                  textSpan={donationAmount} 
                   span={' terkumpul'} 
                   fontWeight={'bold'}
                   fontSize={10}/>
 
                   <TextSpanCard 
                   color={'#212121'}
-                  textSpan={'60'} 
+                  colorS={'#212121'}
+                  textSpan={deadline} 
                   span={' hari lagi'} 
                   fontWeight={'bold'}
                   fontSize={10}/>
@@ -45,6 +47,7 @@ const DonationCardList = ({image, onPress}) => {
               </View>
           </View>
       </View>
+      <Gap height={12}/>
     </TouchableOpacity>
   )
 }
@@ -75,6 +78,7 @@ const styles = StyleSheet.create({
   },
   
    title: {
+    color: '#212121',
     fontSize: 10,
     fontWeight: 'bold',
    },
@@ -85,6 +89,7 @@ const styles = StyleSheet.create({
    },
 
    initiator: {
+    color: '#212121',
     fontSize: 10
    }
 })

@@ -1,12 +1,24 @@
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DefaultHeader, DonationCardList, EmptyAktivitas, Gap } from '../../components'
 import { DonationDummy1, DonationDummy2, DonationDummy3 } from '../../assets'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch, useSelector } from 'react-redux'
+import { getDonationData } from '../../redux/action'
 
 const Aktivitasku = () => {
   const [isEmpty] = useState(false)
   const navigation = useNavigation()
+
+  const dispatch = useDispatch();
+
+  const {donation} = useSelector(state => state.home)
+
+  useEffect(() => {
+  dispatch(getDonationData())
+  })
+
+
   return (
     <View style={{backgroundColor: '#FFF', flex: 1}}>
       <DefaultHeader title={"Aktivitasku"} />
@@ -18,11 +30,18 @@ const Aktivitasku = () => {
             <Text style={styles.sideButton}>Selengkapnya</Text>
           </TouchableOpacity>
         </View>
-        <DonationCardList image={DonationDummy3}/>
-        <Gap height={12}/>
-        <DonationCardList image={DonationDummy2}/>
-        <Gap height={12}/>
-        <DonationCardList image={DonationDummy1}/>
+        {donation.map(itemDonation => {
+          return (
+            <DonationCardList
+            key={itemDonation.id}
+            title={itemDonation.title}
+            image={{ uri: itemDonation.picturePath}}
+            donationAmount={itemDonation.donationAmount}
+            donationNeed={itemDonation.donationNeed}
+            deadline={itemDonation.deadline}
+            />
+          )
+        })}
       </View>
       }
     </View>

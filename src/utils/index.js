@@ -1,5 +1,4 @@
 import useForm from "./useForm";
 
-export {
-    useForm,
-}
+export * from './storage'
+export {useForm}

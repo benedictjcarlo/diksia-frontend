@@ -16,6 +16,7 @@ import EmptyAktivitas from "./EmptyAktivitas";
 import EmptyPesan from "./EmptyPesan";
 import KategoriBar from "./KategoriBar";
 import KategoriHeader from "./KategoriHeader";
+import Loading from "./Loading"
 
 export {
     AuthHeader,
@@ -36,6 +37,6 @@ export {
     EmptyPesan,
     KategoriBar,
     KategoriHeader,
+    Loading
     
-
 }

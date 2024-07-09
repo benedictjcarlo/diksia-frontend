@@ -1,9 +1,19 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { ScrollView, StyleSheet, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import { DetailHeader, DonationCardList, Gap, KategoriBar } from '../../components'
-import { DonationDummy1, DonationDummy2, DonationDummy3 } from '../../assets'
+import { getDonationData } from '../../redux/action'
 
 const Kategori = () => {
+    const dispatch = useDispatch();
+
+    const {donation} = useSelector(state => state.home)
+
+    useEffect(() => {
+    dispatch(getDonationData())
+    })
+
+
     return (
     <View style={styles.page}>
         <DetailHeader title={'Donasi'}/>
@@ -11,24 +21,18 @@ const Kategori = () => {
         <ScrollView style={{flex:1}}>
             <View style={styles.container}>
                 <Gap height={24}/>
-                <DonationCardList image={DonationDummy2}/>
-                <Gap height={12}/>
-                <DonationCardList image={DonationDummy1}/>
-                <Gap height={12}/>
-                <DonationCardList image={DonationDummy3}/>
-                <Gap height={12}/>
-                <DonationCardList image={DonationDummy2}/>
-                <Gap height={12}/>
-                <DonationCardList image={DonationDummy1}/>
-                <Gap height={12}/>
-                <DonationCardList image={DonationDummy3}/>
-                <Gap height={12}/>
-                <DonationCardList image={DonationDummy2}/>
-                <Gap height={12}/>
-                <DonationCardList image={DonationDummy1}/>
-                <Gap height={12}/>
-                <DonationCardList image={DonationDummy3}/>
-                <Gap height={12}/>
+                {donation.map(itemDonation => {
+                    return (
+                    <DonationCardList
+                    key={itemDonation.id}
+                    title={itemDonation.title}
+                    image={{ uri: itemDonation.picturePath}}
+                    donationAmount={itemDonation.donationAmount}
+                    donationNeed={itemDonation.donationNeed}
+                    deadline={itemDonation.deadline}
+                    />
+                    )
+                })}
             </View>
         </ScrollView>
     </View>

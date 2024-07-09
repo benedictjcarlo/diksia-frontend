@@ -42,13 +42,19 @@ const DonasiGadget = () => {
                     <Text style={styles.title}>Merk dan Tipe Gadget</Text>
                     <Gap height={6}/>
                     <View style={styles.inputContainer}>
-                        <TextInput placeholder='cth: Samsung Galaxy S7' style={styles.input}/>
+                        <TextInput 
+                        placeholder='cth: Samsung Galaxy S7' 
+                        placeholderTextColor='#D4D4D4'
+                        style={styles.input}/>
                     </View>
                     <Gap height={24}/>
                     <Text style={styles.title}>Kendala atau Kekurangan Gadget (Opsional)</Text>
                     <Gap height={6}/>
                     <View style={styles.inputContainer}>
-                        <TextInput placeholder='cth: Mic Rusak, Tombol Volume Rusak' style={styles.input}/>
+                        <TextInput 
+                        placeholder='cth: Mic Rusak, Tombol Volume Rusak' 
+                        placeholderTextColor='#D4D4D4'
+                        style={styles.input}/>
                     </View>
                     <Gap height={24}/>
                     <Text style={styles.title}>Upload Foto Gadget</Text>
@@ -124,7 +130,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto',
         fontSize: 14,
         fontWeight: 'normal',
-        color: '#8A8A8A'
+        color: '#212121'
     },
 
     image: {

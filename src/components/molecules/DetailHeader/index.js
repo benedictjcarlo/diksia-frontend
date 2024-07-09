@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 import React from 'react'
-import { IcLeftArrow } from '../../../assets'
 import { useNavigation } from '@react-navigation/native'
+import { IcLeftArrow } from '../../../assets'
 
 const DetailHeader = ({title}) => {
   const navigation = useNavigation()

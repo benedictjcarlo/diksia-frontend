@@ -1,11 +1,19 @@
 import React, {useEffect} from 'react'
 import { View} from 'react-native'
 import { Logo } from '../../assets'
+import { getData } from '../../utils'
 
 const SplashScreen = ({navigation}) => {
     useEffect(() => {
         setTimeout(() => {
-            navigation.replace('Masuk')
+            getData('token').then((token) => {
+                console.log('token: ', token)
+                if(token) {
+                    navigation.reset({index: 0, routes: [{name: 'MainApp'}]})
+                } else {
+                    navigation.replace('Masuk')
+                }
+            })
         }, 2000)
     }, [])
 

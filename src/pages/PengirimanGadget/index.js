@@ -59,13 +59,19 @@ const PengirimanGadget = ({navigation}) => {
             <Text style={styles.title}>Kurir</Text>
             <Gap height={6}/>
             <View style={styles.inputContainer}>
-                <TextInput placeholder='cth: JNE, JNT, SiCepat' style={styles.input}/>
+                <TextInput 
+                placeholder='cth: JNE, JNT, SiCepat' 
+                placeholderTextColor='#D4D4D4'
+                style={styles.input}/>
             </View>
             <Gap height={12}/>
             <Text style={styles.title}>Nomor Resi</Text>
             <Gap height={6}/>
             <View style={styles.inputContainer}>
-                <TextInput placeholder='Masukkan nomor resi pengiriman gadget' style={styles.input}/>
+                <TextInput 
+                placeholder='Masukkan nomor resi pengiriman gadget' 
+                placeholderTextColor='#D4D4D4'
+                style={styles.input}/>
             </View>
         </View>
         <View style={styles.footerButton}>

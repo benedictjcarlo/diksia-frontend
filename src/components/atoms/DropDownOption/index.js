@@ -7,7 +7,7 @@ const DropDownOption = ({placeholder}) => {
     <TouchableOpacity activeOpacity={0.8}>
         <View style={styles.container}>
             <Text style={styles.placeholder}>{placeholder}</Text>
-            <IcDownArrow style={styles.downArrow}/>
+            <IcDownArrow width={20} height={10}/>
         </View>
     </TouchableOpacity>
   )
@@ -30,11 +30,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto',
         fontSize: 14,
         fontWeight: 'normal',
-        color: '#8A8A8A'
+        color: '#D4D4D4'
     },
-
-    downArrow: {
-        width: 18,
-        height: 12,
-    }
 })

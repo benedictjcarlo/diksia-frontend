@@ -18,14 +18,20 @@ const UbahKataSandi = ({navigation}) => {
                 <Text style={styles.title}>Kata Sandi Baru</Text>
                 <Gap height={6}/>
                 <View style={styles.inputContainer}>
-                    <TextInput placeholder='Masukkan kata sandi baru Anda' style={styles.input}/>
+                    <TextInput 
+                    placeholder='Masukkan kata sandi baru Anda'
+                    placeholderTextColor='#D4D4D4'
+                    style={styles.input}/>
                     <IcSandiOff width={16} height={16}/>
                 </View>
                 <Gap height={12}/>
                 <Text style={styles.title}>Konfirmasi Kata Sandi Baru</Text>
                 <Gap height={6}/>
                 <View style={styles.inputContainer}>
-                    <TextInput placeholder='Masukkan ulang kata sandi baru Anda' style={styles.input}/>
+                    <TextInput 
+                    placeholder='Masukkan ulang kata sandi baru Anda' 
+                    placeholderTextColor='#D4D4D4'
+                    style={styles.input}/>
                     <IcSandiOff width={16} height={16}/>
                 </View>
             </View>

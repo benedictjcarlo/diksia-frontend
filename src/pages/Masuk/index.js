@@ -1,8 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, View} from 'react-native'
-import { Button, Gap, AuthHeader, TextInput, TextSpan } from '../../components'
+import { StyleSheet, Text, View } from 'react-native'
+import { useDispatch } from 'react-redux'
+import { AuthHeader, Button, Gap, TextInput, TextSpan } from '../../components'
+import { masukAction } from '../../redux/action/auth'
 import { useForm } from '../../utils'
-import axios from 'axios'
 
 const Masuk = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -10,14 +11,10 @@ const Masuk = ({navigation}) => {
     password: ''
   })
 
+  const dispatch = useDispatch()
+
   const onSubmit = () => {
-    axios.post('http://10.0.2.2:8000/api/login', form)
-      .then((res) => {
-        console.log('success', res)
-      })
-      .catch((err) => {
-        console.log('error', err)
-      });
+    dispatch(masukAction(form, navigation))
   }
 
   return (
@@ -48,7 +45,6 @@ const Masuk = ({navigation}) => {
           brWidth={2} 
           brColor='#5CB8FF'
           onPress={onSubmit}
-          // onPress={() => navigation.replace('MainApp')}
         />
         <Gap height={24}/>
         <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
