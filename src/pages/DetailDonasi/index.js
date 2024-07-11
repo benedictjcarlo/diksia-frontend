@@ -1,20 +1,26 @@
-import { StyleSheet, View, Image, ScrollView } from 'react-native'
 import React from 'react'
-import { Button, DetailDaftarDonasi, DetailDonasiCerita, DetailDonasiPenggalang, DetailDonasiTitle, DetailHeader, DetailDonasiKabar, Gap} from '../../components'
-import { DonationDummy1 } from '../../assets'
+import { Image, ScrollView, StyleSheet, View } from 'react-native'
+import { Button, DetailDaftarDonasi, DetailDonasiCerita, DetailDonasiKabar, DetailDonasiPenggalang, DetailDonasiTitle, DetailHeader, Gap } from '../../components'
 
-const DetailDonasi = ({navigation}) => {
+const DetailDonasi = ({navigation, route}) => {
+  const {title, picturePath, donationAmount, donationNeed, deadline, } = route.params
   return (
     <View style={{backgroundColor: '#FFF', flex: 1}}>
-      <DetailHeader title={'Laptop untuk Nana, Wujudkan Impian Nana'} onBack={() => navigation.goBack()}/>
+      <DetailHeader title={title} onBack={() => navigation.goBack()}/>
       <ScrollView vertical showsVerticalScrollIndicator={false}>
         <Gap height={24}/>
         <View style={styles.imageContainer}>
-          <Image source={DonationDummy1} style={styles.image}/>
+          <Image source={{ uri: picturePath }} style={styles.image}/>
         </View>
         <Gap height={24}/>
         <View style={styles.contentContainer}>
-          <DetailDonasiTitle />
+          <DetailDonasiTitle 
+          title={title}
+          progress={donationAmount/donationNeed}
+          donationAmount={donationAmount}
+          donationNeed={donationNeed}
+          deadline={deadline}
+          />
           <Gap height={24}/>
           <DetailDonasiPenggalang />
           <Gap height={24}/>

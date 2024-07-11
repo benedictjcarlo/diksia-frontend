@@ -9,7 +9,7 @@ const DetailHeader = ({title}) => {
     <View style={styles.container}>
       <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.goBack()}>
         <View style={styles.back}>
-          <IcLeftArrow height={18} width={12}/>
+          <IcLeftArrow height={16} width={12}/>
         </View>
       </TouchableOpacity>
       <Text style={styles.title} numberOfLines={1}>{title}</Text>
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontFamily: 'Roboto',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     color: 'white',
     paddingRight: 20

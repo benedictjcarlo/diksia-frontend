@@ -31,7 +31,7 @@ const DonationCardList = ({image, title, donationAmount, donationNeed, deadline,
                   <TextSpanCard 
                   color={'#5CB8FF'}
                   colorS={'#212121'}
-                  textSpan={donationAmount} 
+                  textSpan={`Rp ${donationAmount.toLocaleString()}`}
                   span={' terkumpul'} 
                   fontWeight={'bold'}
                   fontSize={10}/>
@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
 
   image: {
     width: 120,
-    height: 100,
-    resizeMode: 'cover'
+    height: 110,
+    resizeMode: 'cover',
   },
 
   cardContainer: {
