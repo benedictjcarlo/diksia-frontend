@@ -9,7 +9,6 @@ const Donasi = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const { donation } = useSelector((state) => state.home);
-  const { all, uang, perangkat } = useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(getDonationData());
