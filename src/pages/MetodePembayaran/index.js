@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, createContext, useState } from 'react-native'
 import React from 'react'
 import { Button, DetailHeader, Gap, OptionMetodePembayaran } from '../../components'
 import { LogoBca, LogoBni, LogoBri, LogoDana, LogoGopay, LogoMandiri, LogoOvo, LogoQris, LogoShopeepay } from '../../assets'
 
 const MetodePembayaran = ({navigation}) => {
   return (
-    //baca tentang react native picker
     <View style={{backgroundColor: '#FFF', flex:1}}>
       <DetailHeader title={'Pilih Metode Pembayaran'} />
       <View style={styles.container}>

@@ -2,13 +2,14 @@ import axios from "axios";
 import { API_HOST } from '../../config'
 import { storeData } from "../../utils";
 import { setLoading } from "./global";
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 export const daftarAction = (dataRegister, navigation) => (dispatch) => {
     axios.post(`${API_HOST.url}/register`, dataRegister)
     .then(res => {
         const token = `${res.data.data.token_type} ${res.data.data.access_token}`
         const profile = res.data.data.user
-        storeData('userProfile', profile )
+        storeData('userProfile', profile)
         storeData('token', token)
         dispatch(setLoading(false))
         navigation.reset({index: 0, routes: [{name: 'MainApp'}]})

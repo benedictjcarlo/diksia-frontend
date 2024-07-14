@@ -42,6 +42,8 @@ const Donasi = () => {
               donationAmount={itemDonation.donationAmount}
               donationNeed={itemDonation.donationNeed}
               deadline={itemDonation.deadline}
+              description={itemDonation.description}
+              createdAt={itemDonation.created_at}
               onPress={() => navigation.navigate('DetailDonasi', itemDonation)}
             />
           );

@@ -3,22 +3,37 @@ import React from 'react'
 import { Gap } from '../../atoms'
 import LinearGradient from 'react-native-linear-gradient'
 
-const DetailDonasiCerita = () => {
+const DetailDonasiCerita = ({description, createdAt}) => {
   return (
     <View>
       <Text style={styles.title}>Cerita Penggalangan Dana</Text>
       <Gap height={12}/>
-      <LinearGradient
-      colors={['rgba(255,255,255,0.1)', 'rgba(150,205,248,0.2)', 'rgba(150,205,248,0.8)']}
-      start={{ x: 0, y: 0.4 }}
-      end={{ x: 0, y: 1 }}
-      >
-        <Text style={styles.textTanggal}>19 Juni 2023</Text>
-        <Gap height={6}/>
-        <Text style={styles.text} numberOfLines={8}>Pernahkah kita merasa terhambat dalam mencapai impian kita karena keterbatasan yang tak terelakkan? Nana, seorang siswa SMA yang berbakat, menghadapi tantangan ini setiap hari. Kekurangan akses teknologi menghalangi kemampuannya dalam belajar dan tumbuh. Namun, ada satu kesempatan bagi kita untuk membantu Nana melalui penggalangan dana di aplikasi Diksia.
-        Mari bersama-sama memberikan dukungan kepada Nana. Dalam upaya ini, setiap kontribusi yang kita berikan melalui aplikasi Diksia akan menjadi langkah nyata menuju masa depan yang lebih baik bagi
-        </Text>
-      </LinearGradient>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View>
+          <Text style={styles.textTanggal}>{createdAt}</Text>
+          <Gap height={6}/>
+          <Text style={styles.text} numberOfLines={8}>{description}</Text>
+        </View>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: '100%'
+        }}>
+          <LinearGradient
+          style={{
+            flex: 1,
+            width: '100%',
+            height: '100%'
+          }}
+            colors={['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.5)', 'rgba(255, 255, 255, 1)']}
+            start={{ x: 0, y: 0.4 }}
+            end={{ x: 0, y: 1 }}
+          />
+        </View>
+      </View>
     </View>
   )
 }

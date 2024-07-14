@@ -1,14 +1,28 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-const InputNominal = () => {
-  return (
-    <View style={styles.container}>
+const InputNominal = ({ value, onChange }) => {
+    const handleInputChange = (text) => {
+        const numericText = text.replace(/[^0-9]/g, '');
+        onChange(numericText);
+        const formattedValue = `${numericText.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+        return formattedValue;
+    };
+
+    return (
+        <View style={styles.container}>
         <Text style={styles.label}>Rp</Text>
-        <TextInput style={styles.input} placeholder={'0'} placeholderTextColor={'#212121'}/>
-    </View>
-  )
-}
+        <TextInput
+            style={styles.input}
+            value={handleInputChange(value)}
+            onChangeText={handleInputChange}
+            placeholder={'0'}
+            placeholderTextColor={'#212121'}
+            keyboardType="numeric"
+        />
+        </View>
+);
+};
 
 export default InputNominal
 

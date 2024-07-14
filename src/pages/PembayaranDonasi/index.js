@@ -1,10 +1,12 @@
 import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, ButtonMetodePembayaran, DetailHeader, Gap, InputNominal, Switch, TagButton } from '../../components'
 import { useNavigation } from '@react-navigation/native'
 
 const PembayaranDonasi = () => {
   const navigation = useNavigation()
+  const [nominal, setNominal] = useState('')
+
   return (
     <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -18,7 +20,7 @@ const PembayaranDonasi = () => {
         <View style={styles.container}>
           <Text style={styles.sectionTitle}>Masukkan Nominal Donasi</Text>
           <Gap height={6}/>
-          <InputNominal/>
+          <InputNominal value={nominal} onChange={setNominal}/>
           <Gap height={6}/>
           <Text style={styles.smallText}>Donasi min. sebesar 1.000</Text>
           <Gap height={6}/>
@@ -29,7 +31,8 @@ const PembayaranDonasi = () => {
             color='#4485B7'
             brWidth={2} 
             brColor='#4485B7'
-            onPress={() => navigation.replace('')}/>
+            onSelect={(value) => setNominal(value)}
+            value="10000"/>
             <Gap width={16}/>
             <TagButton 
             text="Rp 20.000" 
@@ -37,7 +40,8 @@ const PembayaranDonasi = () => {
             color='#4485B7'
             brWidth={2} 
             brColor='#4485B7'
-            onPress={() => navigation.replace('')}/>
+            onSelect={(value) => setNominal(value)}
+            value="20000"/>
             <Gap width={16}/>
             <TagButton 
             text="Rp 30.000" 
@@ -45,7 +49,8 @@ const PembayaranDonasi = () => {
             color='#4485B7'
             brWidth={2} 
             brColor='#4485B7'
-            onPress={() => navigation.replace('')}/>
+            onSelect={(value) => setNominal(value)}
+            value="30000"/>
             <Gap width={16}/>
             <TagButton 
             text="Rp 50.000" 
@@ -53,7 +58,8 @@ const PembayaranDonasi = () => {
             color='#4485B7'
             brWidth={2} 
             brColor='#4485B7'
-            onPress={() => navigation.replace('')}/>
+            onSelect={(value) => setNominal(value)}
+            value="50000"/>
           </View>
           <Gap height={24}/>
           <Text style={styles.sectionTitle}>Metode Pembayaran</Text>
