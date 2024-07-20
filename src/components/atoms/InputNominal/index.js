@@ -1,21 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-const InputNominal = ({ value, onChange }) => {
-    const handleInputChange = (text) => {
-        const numericText = text.replace(/[^0-9]/g, '');
-        onChange(numericText);
-        const formattedValue = `${numericText.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
-        return formattedValue;
-    };
-
+const InputNominal = ({ value, onChangeText }) => {
     return (
         <View style={styles.container}>
         <Text style={styles.label}>Rp</Text>
         <TextInput
             style={styles.input}
-            value={handleInputChange(value)}
-            onChangeText={handleInputChange}
+            value={value}
+            onChangeText={onChangeText}
             placeholder={'0'}
             placeholderTextColor={'#212121'}
             keyboardType="numeric"

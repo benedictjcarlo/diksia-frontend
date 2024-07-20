@@ -8,10 +8,13 @@ import Aktivitasku from "./Aktivitasku"
 import Pesan from "./Pesan"
 import Akun from "./Akun"
 import DetailDonasi from "./DetailDonasi"
+import DetailDonasiGadget from "./DetailDonasiGadget"
 import CeritaPenggalangan from "./CeritaPenggalangan"
 import DonasiLainnya from "./DonasiLainnya"
 import PembayaranDonasi from "./PembayaranDonasi"
 import MetodePembayaran from "./MetodePembayaran"
+import RingkasanDonasi from "./RingkasanDonasi"
+import RingkasanPengiriman from "./RingkasanPengiriman"
 import TerimakasihDonasiUang from "./TerimakasihDonasiUang"
 import Kategori from "./Kategori"
 import KategoriMenu from "./KategoriMenu"
@@ -38,10 +41,12 @@ export {
     Pesan,
     Akun,
     DetailDonasi,
+    DetailDonasiGadget,
     CeritaPenggalangan,
     DonasiLainnya,
     PembayaranDonasi,
     MetodePembayaran,
+    RingkasanDonasi,
     TerimakasihDonasiUang,
     Kategori,
     KategoriMenu,
@@ -50,6 +55,7 @@ export {
     DonasiGadget,
     MetodePengirimanGadget,
     PengirimanGadget,
+    RingkasanPengiriman,
     TerimakasihDonasiGadget,
     EditAkun,
     UbahKataSandi,

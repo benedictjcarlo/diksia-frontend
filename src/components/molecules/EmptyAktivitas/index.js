@@ -26,7 +26,7 @@ const EmptyAktivitas = () => {
                 brColor='#5CB8FF'
                 fontSize={12}
                 fontWeight={'bold'}
-                onPress={() => navigation.navigate('')}/>
+                onPress={() => navigation.navigate('MainApp')}/>
         </View>
     </View>
     )

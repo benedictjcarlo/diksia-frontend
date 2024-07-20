@@ -10,10 +10,12 @@ import {
     Pesan,
     Akun,
     DetailDonasi,
+    DetailDonasiGadget,
     CeritaPenggalangan,
     DonasiLainnya,
     PembayaranDonasi,
     MetodePembayaran,
+    RingkasanDonasi,
     TerimakasihDonasiUang,
     Kategori,
     KategoriMenu,
@@ -22,6 +24,7 @@ import {
     DonasiGadget,
     MetodePengirimanGadget,
     PengirimanGadget,
+    RingkasanPengiriman,
     TerimakasihDonasiGadget,
     EditAkun,
     UbahKataSandi,
@@ -108,6 +111,12 @@ const Router = () => {
             />
 
             <Stack.Screen 
+            name="DetailDonasiGadget" 
+            component={DetailDonasiGadget}
+            options={{headerShown: false}}
+            />
+
+            <Stack.Screen 
             name="CeritaPenggalangan" 
             component={CeritaPenggalangan}
             options={{headerShown: false}}
@@ -128,6 +137,12 @@ const Router = () => {
             <Stack.Screen 
             name="MetodePembayaran" 
             component={MetodePembayaran}
+            options={{headerShown: false}}
+            />
+
+            <Stack.Screen 
+            name="RingkasanDonasi" 
+            component={RingkasanDonasi}
             options={{headerShown: false}}
             />
 
@@ -176,6 +191,12 @@ const Router = () => {
             <Stack.Screen 
             name="PengirimanGadget" 
             component={PengirimanGadget}
+            options={{headerShown: false}}
+            />
+
+            <Stack.Screen 
+            name="RingkasanPengiriman" 
+            component={RingkasanPengiriman}
             options={{headerShown: false}}
             />
 

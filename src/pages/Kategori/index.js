@@ -15,6 +15,17 @@ const Kategori = () => {
         dispatch(getDonationDataByTypes(type));
     }, [type]);
 
+    const handleDetailDonasi = (itemDonation) => {
+        if (itemDonation.types === 'UANG') {
+            navigation.navigate('DetailDonasi', itemDonation);
+        } else if (itemDonation.types === 'PERANGKAT') {
+            navigation.navigate('DetailDonasiGadget', itemDonation);
+        } else {
+            console.log('Item Donation: ', itemDonation)
+            console.log('Unknown type: ', itemDonation.types);
+        }
+    };
+
     return (
         <View style={styles.page}>
         <DetailHeader title={'Donasi'} />
@@ -30,7 +41,8 @@ const Kategori = () => {
                 donationAmount={itemDonation.donationAmount}
                 donationNeed={itemDonation.donationNeed}
                 deadline={itemDonation.deadline}
-                    onPress={() => navigation.navigate('DetailDonasi', itemDonation)}
+                types={itemDonation.types}
+                onPress={() => handleDetailDonasi(itemDonation)}
                 />
             ))}
             </View>

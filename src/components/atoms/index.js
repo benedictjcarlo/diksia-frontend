@@ -13,6 +13,11 @@ import ButtonMetodePembayaran from "./ButtonMetodePembayaran";
 import Switch from "./Switch";
 import OptionMetodePembayaran from "./OptionMetodePembayaran";
 import DropDownOption from "./DropDownOption";
+import {MetodePembayaranContext} from "./MetodePembayaranContext"
+import TagStatus from "./TagStatus"
+import SelectJenis from "./SelectJenis"
+import SelectKondisi from "./SelectKondisi";
+import DateBirth from "./DateBirth"
 
 export {
     TextInput, 
@@ -30,5 +35,9 @@ export {
     Switch,
     OptionMetodePembayaran,
     DropDownOption,
-
+    TagStatus,
+    MetodePembayaranContext,
+    SelectJenis,
+    SelectKondisi,
+    DateBirth
 };

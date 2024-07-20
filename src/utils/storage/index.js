@@ -18,3 +18,7 @@ export const getData = async (key) => {
         showMessage('Gagal Mengambil Data Dari Local Storage!')
     }
 };
+
+export const updateDatabase = async (updatedUserProfile) => {
+    await storeData('userProfile', updatedUserProfile);
+};

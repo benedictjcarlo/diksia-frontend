@@ -39,6 +39,7 @@ const KataSandi = ({navigation}) => {
           value={form.password} 
           onChangeText={(value) => setForm('password', value)}
           secureTextEntry
+          autoCapitalize="none"
           />
         <TextInput 
           label={"Konfirmasi Kata Sandi"} 
@@ -46,6 +47,7 @@ const KataSandi = ({navigation}) => {
           value={form.password_confirmation} 
           onChangeText={(value) => setForm('password_confirmation', value)}
           secureTextEntry
+          autoCapitalize="none"
         />
         <Gap height={48}/>
         <Button 

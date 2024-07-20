@@ -12,10 +12,11 @@ export const daftarAction = (dataRegister, navigation) => (dispatch) => {
         storeData('userProfile', profile)
         storeData('token', token)
         dispatch(setLoading(false))
-        navigation.reset({index: 0, routes: [{name: 'MainApp'}]})
+        navigation.reset({index: 0, routes: [{name: 'Masuk'}]})
     })
     .catch(err => {
         dispatch(setLoading(false))
+        console.log('sign up error: ', err.response)
         showToast(err?.response?.data?.data?.error)
     })
 }
@@ -35,6 +36,14 @@ export const masukAction = (form, navigation) => (dispatch) => {
         })
         .catch((err) => {
             dispatch(setLoading(false))
-            showToast(err?.response?.data?.data?.error)
+            showToast(err?.response?.data?.meta?.message)
         });
+}
+
+const showToast = (message, type) => {
+    showMessage({
+        message,
+        type: type === 'success' ? 'success' : 'danger',
+        backgroundColor: type === 'success' ? '#1ABC9C' : '#D9435E',
+    })
 }

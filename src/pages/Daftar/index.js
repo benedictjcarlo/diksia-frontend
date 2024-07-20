@@ -20,6 +20,7 @@ const Masuk = ({navigation}) => {
   return (
     <View style={{backgroundColor:'#FFF', flex:1}}>
       <AuthHeader />
+      <Gap height={48}/>
       <View  style={styles.titleContainer}>
         <Text style={styles.title}>DAFTAR</Text>
       </View>
@@ -28,14 +29,18 @@ const Masuk = ({navigation}) => {
           label={"Nama Lengkap"} 
           placeholder="Masukkan nama lengkap Anda" 
           value={form.name} 
-          onChangeText={(value) => setForm('name', value)}/>
+          onChangeText={(value) => setForm('name', value)}
+          autoCapitalize="words"
+        />
+        <Gap height={12}/>
         <TextInput 
-          label={"Nomor Ponsel atau Email"} 
-          placeholder={"Masukkan nomor ponsel atau email Anda"}
+          label={"Email"} 
+          placeholder={"Masukkan email Anda"}
           value={form.email} 
           onChangeText={(value) => setForm('email', value)}
+          autoCapitalize="none"
         />
-        <Gap height={24}/>
+        <Gap height={48}/>
         <Button 
           text="Daftar" 
           bgColor='#5CB8FF' 
@@ -55,19 +60,6 @@ const Masuk = ({navigation}) => {
           onPress={() => navigation.navigate('Masuk')}/>
         </View>
         <Gap height={24}/>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{
-            fontFamily: 'Roboto', 
-            fontSize: 18, 
-            fontWeight: 'bold', 
-            color: '#212121'
-            }}>
-            Atau daftar dengan</Text>
-        </View>
-        <Gap height={24}/>
-        <Button text={'Google'} bgColor='#FFF' brWidth={2} brColor='#D4D4D4'/>
-        <Gap height={24}/>
-        <Button text={'Facebook'} bgColor='#3B589A' brWidth={2} brColor='#3B589A' color='#FFF'/>
       </View>
     </View>
   )
@@ -85,7 +77,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Roboto',
     color: '#212121',
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold'
   },
 

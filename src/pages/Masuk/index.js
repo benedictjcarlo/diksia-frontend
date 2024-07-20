@@ -20,24 +20,28 @@ const Masuk = ({navigation}) => {
   return (
     <View style={{backgroundColor:'#FFF', flex:1}}>
       <AuthHeader />
+      <Gap height={48}/>
       <View  style={styles.titleContainer}>
         <Text style={styles.title}>MASUK</Text>
       </View>
       <View style={styles.container}>
         <TextInput 
-          label={"Email atau nomor telepon"} 
-          placeholder={"Masukkan email atau nomor telepon Anda"}
+          label={"Email"} 
+          placeholder={"Masukkan email Anda"}
           value={form.email}
           onChangeText={(value)=> setForm('email', value)}
+          autoCapitalize="none"
         />
+        <Gap height={12}/>
         <TextInput 
           label={"Kata sandi"} 
-          placeholder={"Masukkan kata sandi"}
+          placeholder={"Masukkan kata sandi Anda"}
           value={form.password}
           onChangeText={(value)=> setForm('password', value)}
           secureTextEntry
+          autoCapitalize="none"
         />
-        <Gap height={24}/>
+        <Gap height={48}/>
         <Button 
           text="Masuk" 
           bgColor='#5CB8FF' 
@@ -57,7 +61,7 @@ const Masuk = ({navigation}) => {
           onPress={() => navigation.navigate('Daftar')}/>
         </View>
         <Gap height={24}/>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        {/* <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <Text style={{
             fontFamily: 'Roboto', 
             fontSize: 18, 
@@ -69,7 +73,7 @@ const Masuk = ({navigation}) => {
         <Gap height={24}/>
         <Button text={'Google'} bgColor='#fff' brWidth={2} brColor='#D4D4D4'/>
         <Gap height={24}/>
-        <Button text={'Facebook'} bgColor='#3B589A' brWidth={2} brColor='#3B589A' color='#FFF'/>
+        <Button text={'Facebook'} bgColor='#3B589A' brWidth={2} brColor='#3B589A' color='#FFF'/> */}
       </View>
     </View>
   )
@@ -87,7 +91,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Roboto',
     color: '#212121',
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold'
   },
 

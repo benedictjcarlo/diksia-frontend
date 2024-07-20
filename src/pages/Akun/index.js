@@ -1,12 +1,32 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { AkunKeluar, AkunMenu, DefaultHeader, Gap } from '../../components'
-import { IcAkunDefault, IcRightArrow } from '../../assets'
-import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { IcAkunDefault } from '../../assets'
+import { AkunKeluar, AkunMenu, DefaultHeader, Gap } from '../../components'
+import { getData } from '../../utils'
 
 const Akun = () => {
   const navigation = useNavigation()
+  const route = useRoute()
+  const [userProfile, setUserProfile] = useState({})
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchUserProfile = async () => {
+        const userProfileData = await getData('userProfile');
+        setUserProfile(userProfileData);
+      };
+      fetchUserProfile();
+    }, [])
+  );
+
+  useEffect(() => {
+    if (route.params?.userProfile) {
+      setUserProfile(route.params.userProfile);
+    }
+  }, [route]);
+
   const keluarAkun = () => {
     AsyncStorage.multiRemove(['userProfile', 'token']).then(() => {
       navigation.reset({index: 0, routes: [{name: 'Masuk'}]})
@@ -20,12 +40,12 @@ const Akun = () => {
         <IcAkunDefault width={60} height={60}/>
         <Gap width={24}/>
         <View>
-          <Text style={styles.title}>Benedict Juan Carlo</Text>
+          <Text style={styles.title}>{userProfile.name}</Text>
           <Gap height={12} />
-          <Text style={styles.text}>carlo.bjc264@gmail.com</Text>
+          <Text style={styles.text}>{userProfile.email}</Text>
         </View>
       </View>
-      <AkunMenu title={'Edit Akun'} onPress={() => navigation.navigate('EditAkun')}/>
+      <AkunMenu title={'Edit Akun'} onPress={() => navigation.navigate('EditAkun')} />
       <AkunMenu title={'Ubah Kata Sandi'} onPress={() => navigation.navigate('UbahKataSandi')}/>
       <AkunMenu title={'Bantuan'} onPress={() => navigation.navigate('Bantuan')}/>
       <AkunMenu title={'Syarat dan Ketentuan'} onPress={() => navigation.navigate('SyaratKetentuan')}/>

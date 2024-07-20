@@ -20,7 +20,7 @@ const TerimakasihDonasiUang = ({navigation}) => {
           color='#FFF'
           brColor='#4485B7' 
           brWidth={0}
-          onPress={() => navigation.navigate('Donasi')}/>
+          onPress={() => navigation.reset({index: 0, routes: [{name: 'MainApp'}]})}/>
       </View>
     </View>
   )

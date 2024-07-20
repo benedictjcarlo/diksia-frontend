@@ -24,12 +24,25 @@ const Donasi = () => {
     navigation.navigate('Kategori');
   };
 
+  const handleDetailDonasi = (itemDonation) => {
+    if (itemDonation.types === 'UANG') {
+      navigation.navigate('DetailDonasi', itemDonation);
+    } else if (itemDonation.types === 'PERANGKAT') {
+      navigation.navigate('DetailDonasiGadget', itemDonation);
+    } else {
+      console.log('Item Donation: ', itemDonation)
+      console.log('Unknown type: ', itemDonation.types);
+    }
+  };
+
+  
+
   return (
     <ScrollView vertical style={{ backgroundColor: 'white' }} showsVerticalScrollIndicator={false}>
       <HomeHeader />
-      <ContentDG />
+      <ContentDG onPress={() => handleDonasiGadgetPress}/>
       <Gap height={24} />
-      <Text style={styles.sectionTitle}>Penggalangan Dana Tercapai</Text>
+      <Text style={styles.sectionTitle}>Penggalangan Dana Hampir Tercapai</Text>
       <Gap height={12} />
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <Gap width={20} />
@@ -44,7 +57,8 @@ const Donasi = () => {
               deadline={itemDonation.deadline}
               description={itemDonation.description}
               createdAt={itemDonation.created_at}
-              onPress={() => navigation.navigate('DetailDonasi', itemDonation)}
+              types={itemDonation.types}
+              onPress={() => handleDetailDonasi(itemDonation)}
             />
           );
         })}
@@ -93,7 +107,8 @@ const Donasi = () => {
               donationAmount={itemDonation.donationAmount}
               donationNeed={itemDonation.donationNeed}
               deadline={itemDonation.deadline}
-              onPress={() => navigation.navigate('DetailDonasi', itemDonation)}
+              types={itemDonation.types}
+              onPress={() => handleDetailDonasi(itemDonation)}
             />
           );
         })}

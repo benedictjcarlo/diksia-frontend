@@ -1,21 +1,13 @@
 import React from 'react'
 import { Image, ScrollView, StyleSheet, View } from 'react-native'
 import { Button, DetailDaftarDonasi, DetailDonasiCerita, DetailDonasiKabar, DetailDonasiPenggalang, DetailDonasiTitle, DetailHeader, Gap } from '../../components'
-import moment from 'moment';
-moment.locale('id', {
-  months: 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_November_Desember'.split('_'),
-  monthsShort: 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Ags_Sep_Okt_Nov_Des'.split('_'),
-  weekdays: 'Minggu_Senin_Selasa_Rabu_Kamis_Jumat_Sabtu'.split('_'),
-  weekdaysShort: 'Min_Sen_Sel_Rab_Kam_Jum_Sab'.split('_'),
-  weekdaysMin: 'Mg_Sn_Sl_Rb_Km_Jm_Sb'.split('_')
-});
+import moment from '../../config/MomentConfig';
 
 const DetailDonasi = ({navigation, route}) => {
-  const {title, picturePath, donationAmount, donationNeed, deadline, description} = route.params
+  const {id, title, picturePath, donationAmount, donationNeed, deadline, types, description} = route.params
   const createdAt = route.params.created_at;
   const momentDate = moment.unix(createdAt);
   const formattedDate = momentDate.locale('id').format('dddd, D MMMM YYYY');
-
 
   return (
     <View style={{backgroundColor: '#FFF', flex: 1}}>
@@ -33,6 +25,7 @@ const DetailDonasi = ({navigation, route}) => {
           donationAmount={donationAmount}
           donationNeed={donationNeed}
           deadline={deadline}
+          types={types}
           />
           <Gap height={24}/>
           <DetailDonasiPenggalang />
@@ -76,7 +69,15 @@ const DetailDonasi = ({navigation, route}) => {
           color='#FFF'
           brColor='#4485B7' 
           brWidth={0}
-          onPress={() => navigation.navigate('PembayaranDonasi')}/>
+          onPress={() => {
+            navigation.navigate('PembayaranDonasi', {
+              id,
+              title,
+              picturePath,
+              deadline,
+              types,
+            });
+          }}/>
       </View>
     </View>
   )

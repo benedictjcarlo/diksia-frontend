@@ -1,11 +1,79 @@
 import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
-import { Button, ButtonMetodePembayaran, DetailHeader, Gap, InputNominal, Switch, TagButton } from '../../components'
-import { useNavigation } from '@react-navigation/native'
+import React, { useContext, useEffect, useState } from 'react'
+import { Button, ButtonMetodePembayaran, DetailHeader, Gap, InputNominal, MetodePembayaranContext, Switch, TagButton } from '../../components'
+import { LogoBca, LogoBni, LogoBri, LogoDana, LogoGopay, LogoMandiri, LogoOvo, LogoQris, LogoShopeepay } from '../../assets'
+import { getData } from '../../utils'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 const PembayaranDonasi = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+  const route = useRoute();
   const [nominal, setNominal] = useState('')
+  const [formattedNominal, setFormattedNominal] = useState('')
+  const [userProfile, setUserProfile] = useState({})
+  const { metodePembayaran } = useContext(MetodePembayaranContext);
+  const { id, title, picturePath, deadline, types} = route.params;
+
+  useEffect(() => {
+    getData('userProfile').then((res) => {
+      setUserProfile(res)
+    })
+  })
+
+  const getLogo = (metodePembayaran) => {
+    switch (metodePembayaran) {
+      case 'QRIS':
+        return LogoQris;
+      case 'GOPAY':
+        return LogoGopay;
+      case 'OVO':
+        return LogoOvo;
+      case 'DANA':
+        return LogoDana;
+      case 'SHOPEEPAY':
+        return LogoShopeepay;
+      case 'Mandiri Virtual Account':
+        return LogoMandiri;
+      case 'BCA Virtual Account':
+        return LogoBca;
+      case 'BRI Virtual Account':
+        return LogoBri;
+      case 'BNI Virtual Account':
+        return LogoBni;
+      default:
+        return null;
+    }
+  }
+
+  const handleNominalChange = (value) => {
+    const numericText = value.replace(/[^0-9]/g, '');
+    setNominal(numericText); // store the numeric value
+    setFormattedNominal(numericText.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'));
+  };
+  
+  const formatNominal = (value) => {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+
+  
+  const handleCheckout = () => {
+    const data = {
+      donation: {
+        id,
+        title,
+        picturePath,
+        deadline,
+        types,
+      },
+      transaction: {
+        metodePembayaran,
+        nominalDonasi: nominal,
+        status: 'Berhasil',
+      },
+      userProfile
+    };
+    navigation.replace('RingkasanDonasi', { data });
+  }
 
   return (
     <KeyboardAvoidingView
@@ -20,7 +88,7 @@ const PembayaranDonasi = () => {
         <View style={styles.container}>
           <Text style={styles.sectionTitle}>Masukkan Nominal Donasi</Text>
           <Gap height={6}/>
-          <InputNominal value={nominal} onChange={setNominal}/>
+          <InputNominal value={formatNominal(nominal)} onChangeText={(text) => handleNominalChange(text)}/>
           <Gap height={6}/>
           <Text style={styles.smallText}>Donasi min. sebesar 1.000</Text>
           <Gap height={6}/>
@@ -31,7 +99,7 @@ const PembayaranDonasi = () => {
             color='#4485B7'
             brWidth={2} 
             brColor='#4485B7'
-            onSelect={(value) => setNominal(value)}
+            onSelect={(value) => handleNominalChange(value)}
             value="10000"/>
             <Gap width={16}/>
             <TagButton 
@@ -40,7 +108,7 @@ const PembayaranDonasi = () => {
             color='#4485B7'
             brWidth={2} 
             brColor='#4485B7'
-            onSelect={(value) => setNominal(value)}
+            onSelect={(value) => handleNominalChange(value)}
             value="20000"/>
             <Gap width={16}/>
             <TagButton 
@@ -49,7 +117,7 @@ const PembayaranDonasi = () => {
             color='#4485B7'
             brWidth={2} 
             brColor='#4485B7'
-            onSelect={(value) => setNominal(value)}
+            onSelect={(value) => handleNominalChange(value)}
             value="30000"/>
             <Gap width={16}/>
             <TagButton 
@@ -58,13 +126,21 @@ const PembayaranDonasi = () => {
             color='#4485B7'
             brWidth={2} 
             brColor='#4485B7'
-            onSelect={(value) => setNominal(value)}
+            onSelect={(value) => handleNominalChange(value)}
             value="50000"/>
           </View>
           <Gap height={24}/>
           <Text style={styles.sectionTitle}>Metode Pembayaran</Text>
           <Gap height={6}/>
-          <ButtonMetodePembayaran/>
+          <ButtonMetodePembayaran 
+            metodePembayaran={metodePembayaran}
+            id={id}
+            title={title}
+            picturePath={picturePath}
+            deadline={deadline}
+            types={types}
+            logo={getLogo(metodePembayaran)}
+          />
           <Gap height={12}/>
           <View style={{flexDirection: 'row', justifyContent: 'space-between',alignItems: 'center'}}>
             <Text style={styles.anonim}>Donasi sebagai Anonim (nama anda akan disembunyikan)</Text>
@@ -78,7 +154,7 @@ const PembayaranDonasi = () => {
             color='#FFF'
             brColor='#4485B7' 
             brWidth={0}
-            onPress={() => navigation.navigate('TerimakasihDonasiUang')}/>
+            onPress={handleCheckout}/>
         </View>
       </View>
     </KeyboardAvoidingView>

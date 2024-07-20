@@ -1,17 +1,35 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React from 'react'
 import { IcRightArrow } from '../../../assets'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
-const ButtonMetodePembayaran = () => {
+const ButtonMetodePembayaran = ({metodePembayaran, logo}) => {
     const navigation = useNavigation()
+    const route = useRoute()
+    const { id, title, picturePath, deadline, types } = route.params
     return (
-    <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.navigate('MetodePembayaran')}>
-        <View style={styles.container}>
-        <Text style={styles.label}>Pilih Metode Pembayaran</Text>
-        <IcRightArrow style={styles.rightArrow}/>
-        </View>
-    </TouchableOpacity>
+        <TouchableOpacity 
+            activeOpacity={0.7} 
+            onPress={() => navigation.navigate('MetodePembayaran', {
+                id,
+                title,
+                picturePath,
+                deadline,
+                types,
+            })}
+        >
+            <View style={styles.container}>
+                <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+                    <View style={styles.logoContainer}>
+                        {logo && <Image source={logo} style={styles.logo} />}
+                    </View>
+                    <Text style={styles.label}>
+                        {metodePembayaran ? `${metodePembayaran}` : 'Pilih Metode Pembayaran'}
+                    </Text>
+                </View>
+                <IcRightArrow style={styles.rightArrow} />
+            </View>
+        </TouchableOpacity>
     )
 }
 
@@ -26,6 +44,17 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 6,
         height: 60,
+    },
+
+    logoContainer: {
+        width: 42,
+        height: 12,
+        marginRight: 16,
+    },
+
+    logo: {
+        width: 42,
+        height: 14,
     },
 
     label: {

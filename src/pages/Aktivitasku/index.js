@@ -1,28 +1,25 @@
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { DefaultHeader, DonationCardList, EmptyAktivitas, Gap } from '../../components'
-import { DonationDummy1, DonationDummy2, DonationDummy3 } from '../../assets'
 import { useNavigation } from '@react-navigation/native'
+import React, { useEffect } from 'react'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDonationData } from '../../redux/action'
+import { DefaultHeader, EmptyAktivitas, ListAktivitas } from '../../components'
+import { getAktivitas } from '../../redux/action'
+import moment from '../../config/MomentConfig';
 
 const Aktivitasku = () => {
-  const [isEmpty] = useState(false)
   const navigation = useNavigation()
-
   const dispatch = useDispatch();
-
-  const {donation} = useSelector(state => state.home)
+  const {aktivitas} = useSelector((state) => state.donasi)
 
   useEffect(() => {
-  dispatch(getDonationData())
-  })
-
+  dispatch(getAktivitas())
+  }, [])
+  
 
   return (
-    <View style={{backgroundColor: '#FFF', flex: 1}}>
+    <ScrollView style={{backgroundColor: '#FFF', flex: 1}}>
       <DefaultHeader title={"Aktivitasku"} />
-      {isEmpty ? <EmptyAktivitas /> : 
+      {aktivitas.length < 1 ? <EmptyAktivitas /> : 
       <View style={styles.page}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Riwayat Donasi</Text>
@@ -30,21 +27,24 @@ const Aktivitasku = () => {
             <Text style={styles.sideButton}>Selengkapnya</Text>
           </TouchableOpacity>
         </View>
-        {donation.map(itemDonation => {
+        {aktivitas.map((itemDonasi) => {
+          const createdAt = itemDonasi.created_at
+          const momentDate = moment.unix(createdAt);
+          const formattedDate = momentDate.locale('id').format('D MMMM YYYY');
           return (
-            <DonationCardList
-            key={itemDonation.id}
-            title={itemDonation.title}
-            image={{ uri: itemDonation.picturePath}}
-            donationAmount={itemDonation.donationAmount}
-            donationNeed={itemDonation.donationNeed}
-            deadline={itemDonation.deadline}
+            <ListAktivitas
+              key={itemDonasi.id}
+              title={itemDonasi.donation.title}
+              image={{ uri: itemDonasi.donation.picturePath }}
+              status={itemDonasi.status}
+              createdAt={formattedDate}
+              amount={itemDonasi.amount}
             />
           )
         })}
       </View>
       }
-    </View>
+    </ScrollView>
   )
 }
 

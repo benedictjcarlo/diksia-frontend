@@ -1,8 +1,28 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Button, DetailHeader, Gap, TextSpan } from '../../components'
+import { useRoute } from '@react-navigation/native'
 
 const MetodePengirimanGadget = ({navigation}) => {
+  const route = useRoute();
+  const {data} = route.params;
+  const {id, title, picturePath, deadline, jenis, merk, kondisi, kendala, dataImage} = data;
+
+  const handlePengiriman = () => {
+    const newData = {
+      id,
+      title,
+      picturePath,
+      deadline,
+      jenis,
+      merk,
+      kondisi,
+      kendala,
+      dataImage,
+    }
+    navigation.navigate('PengirimanGadget', newData)
+  }
+
   return (
     <View style={styles.page}>
       <DetailHeader title={'Metode Pengiriman Gadget'} />
@@ -56,7 +76,7 @@ const MetodePengirimanGadget = ({navigation}) => {
           color='#FFF'
           brColor='#4485B7' 
           brWidth={0}
-          onPress={() => navigation.navigate('PengirimanGadget')}/>
+          onPress={handlePengiriman}/>
       </View>
     </View>
   )
