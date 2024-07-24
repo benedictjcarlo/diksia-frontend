@@ -4,31 +4,54 @@ import { Button, DetailHeader, Gap } from '../../components'
 import { DonationDummy1 } from '../../assets'
 
 const CeritaPenggalangan = ({navigation, route}) => {
-  const { picturePath, description, formattedDate } = route.params;
-  return (
-    <View style={{backgroundColor: '#FFF', flex:1}}>
-      <DetailHeader title={'Cerita Penggalangan Dana'} onBack={() => {}} />
-      <ScrollView>
-        <Gap height={24}/>
-        <View style={styles.container}>
-          <Text style={styles.tanggal}>{formattedDate}</Text>
-          <Gap height={12}/>
-          <Image source={{ uri: picturePath }} style={styles.image} />
+  const { picturePath, description, formattedDate, id, title, deadline, types} = route.params;
+
+  const handleDonasi = (types) => {
+      if (types === 'UANG') {
+        navigation.navigate('PembayaranDonasi', {
+          id: id,
+          title: title,
+          picturePath: picturePath,
+          deadline: deadline,
+          types,
+        });
+      } else if (types === 'PERANGKAT') {
+        navigation.navigate('DonasiGadget', {
+          id: id,
+          titile: title,
+          picturePath: picturePath,
+          deadline: deadline,
+        });
+      } else {
+        console.log('Item Donation: ', )
+        console.log('Unknown type: ', types);
+      }
+    };
+
+    return (
+      <View style={{backgroundColor: '#FFF', flex:1}}>
+        <DetailHeader title={'Cerita Penggalangan Dana'} onBack={() => {}} />
+        <ScrollView>
           <Gap height={24}/>
-          <Text style={styles.text}>{description}</Text>
+          <View style={styles.container}>
+            <Text style={styles.tanggal}>{formattedDate}</Text>
+            <Gap height={12}/>
+            <Image source={{ uri: picturePath }} style={styles.image} />
+            <Gap height={24}/>
+            <Text style={styles.text}>{description}</Text>
+          </View>
+        </ScrollView>
+        <View style={styles.footerButton}>
+        <Button 
+          text="Donasi Sekarang" 
+          bgColor='#4485B7' 
+          color='#FFF'
+          brColor='#4485B7' 
+          brWidth={0}
+          onPress={() => handleDonasi(types)}/>
         </View>
-      </ScrollView>
-      <View style={styles.footerButton}>
-      <Button 
-        text="Donasi Sekarang" 
-        bgColor='#4485B7' 
-        color='#FFF'
-        brColor='#4485B7' 
-        brWidth={0}
-        onPress={() => navigation.navigate('PembayaranDonasi')}/>
       </View>
-    </View>
-  )
+    )
 }
 
 export default CeritaPenggalangan

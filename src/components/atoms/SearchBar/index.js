@@ -12,6 +12,7 @@ const SearchBar = () => {
         style={{flex: 1, color: '#212121', paddingRight: 20}} 
         placeholder='Cari yang mau kamu bantuin'
         placeholderTextColor='#D4D4D4'
+        editable={false}
         />
     </View>
   )

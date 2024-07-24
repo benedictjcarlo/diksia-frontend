@@ -116,7 +116,7 @@ const DonasiGadget = () => {
                     <Gap height={24}/>
                     <TextInput
                     fontS={16}
-                    label={"Kendala atau Kekurangan Gadget (Opsional)"}
+                    label={"Kendala atau Kekurangan Gadget"}
                     placeholder={"cth: Mic Rusak, Tombol Volume Rusak, Kamera Rusak"}
                     value={form.kendala}
                     onChangeText={(value) => setForm('kendala', value)}/>

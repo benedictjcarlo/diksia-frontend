@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { AuthHeader, Button, Gap, TextInput, TextSpan } from '../../components'
 import { useForm } from '../../utils'
 
-const Masuk = ({navigation}) => {
+const Daftar = ({navigation}) => {
   const [form, setForm] = useForm({
     name: '',
     email: '',
@@ -65,7 +65,7 @@ const Masuk = ({navigation}) => {
   )
 }
 
-export default Masuk
+export default Daftar
 
 const styles = StyleSheet.create({
   titleContainer: {

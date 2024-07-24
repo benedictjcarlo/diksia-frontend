@@ -14,7 +14,7 @@ const ListAktivitas = ({title, image, status, createdAt, amount}) => {
                 <Gap height={12}/>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingRight: 8}}>
                     <Text style={styles.text}>{createdAt}</Text>
-                    {amount === 1 ?
+                    {amount <= 1 ?
                     <Text style={styles.text}>{formatNominal(amount)} Perangkat</Text> : 
                     <Text style={styles.text}>Rp {formatNominal(amount)}</Text>}
                     

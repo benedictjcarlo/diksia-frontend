@@ -12,11 +12,12 @@ const SelectJenis = ({label, onSelectChange}) => {
       <Gap height={12}/>
       <View style={styles.input}>
         <Picker
-        selectedValue={selectedValue}
-        onValueChange={(itemValue) => {
-          onSelectChange(itemValue)
-          setSelectedValue(itemValue)
-        }}
+          style={{ color: '#212121' }} 
+          selectedValue={selectedValue}
+          onValueChange={(itemValue) => {
+            onSelectChange(itemValue)
+            setSelectedValue(itemValue)
+          }}
         >
           <Picker.Item label="Handphone" value="Handphone" />
           <Picker.Item label="Tablet" value="Tablet" />
@@ -36,11 +37,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#212121',
   },
+  
+  labelText: {
+    color: 'gray',
+  },
 
   input: {
     borderRadius: 6,
     borderWidth: 1,
     borderColor: '#D4D4D4',
-    color: '#212121'
   }
 })

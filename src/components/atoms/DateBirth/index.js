@@ -4,15 +4,17 @@ import { IcCalendar } from '../../../assets'
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 
-export default function DateBirth({onDateChange}) {
+export default function DateBirth({onDateChange, defaultValue}) {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [birthDate, setBirthDate] = useState('');
+  const [birthDate, setBirthDate] = useState(() => {
+    return defaultValue? moment(defaultValue, 'DD MMMM, YYYY').format('DD MMMM, YYYY') : '';
+  });
 
   const showDatePicker = () => setDatePickerVisibility(true);
   const hideDatePicker = () => setDatePickerVisibility(false);
 
   const handleDateChange = (date) => {
-    setBirthDate(date);
+    setBirthDate(moment(date).format('DD MMMM, YYYY'));
     hideDatePicker();
     onDateChange(date);
   };
@@ -23,8 +25,8 @@ export default function DateBirth({onDateChange}) {
         <TextInput
           numberOfLines={1}
           editable={false}
-          placeholder="Pilih Tanggal"
-          value={birthDate? moment(birthDate).format('DD MMMM, YYYY') : ''}
+          placeholder={birthDate ? '' : 'Pilih Tanggal'}
+          value={birthDate}
           style={{fontSize: 14, color: '#212121'}}
         />
         <IcCalendar/>
@@ -32,7 +34,7 @@ export default function DateBirth({onDateChange}) {
       <DatePicker
         modal
         open={isDatePickerVisible}
-        date={birthDate? new Date(birthDate) : new Date()}
+        date={birthDate ? new Date(moment(birthDate, 'DD MMMM, YYYY').valueOf()) : new Date()}
         onConfirm={handleDateChange}
         onCancel={hideDatePicker}
         mode="date"

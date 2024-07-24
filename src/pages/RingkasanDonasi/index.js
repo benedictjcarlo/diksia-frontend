@@ -5,12 +5,17 @@ import { Button, DetailHeader, Gap, TextSpanCard } from '../../components'
 import axios from 'axios'
 import { getData } from '../../utils'
 import { API_HOST } from '../../config'
+import { useDispatch } from 'react-redux'
+import { setLoading } from '../../redux/action'
+import { showMessage } from 'react-native-flash-message'
 
-const PembayaranDonasi = () => {
+const RingkasanDonasi = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const {data} = route.params
     const {donation, transaction, userProfile} = data;
+
+    const dispatch = useDispatch();
 
     const onCheckout = () => {
         const data = {
@@ -31,7 +36,10 @@ const PembayaranDonasi = () => {
                 navigation.replace('TerimakasihDonasiUang')
             })
             .catch(err => {
-                console.log('checkout gagal: ', err.response)
+                dispatch(setLoading(false))
+                const errors = err.response.data.errors
+                if (errors.amount) showToast('Nominal Donasi Harus Diisi')
+                if (errors.method) showToast('Metode Pembayaran Harus Diisi')
             })
         })
     }
@@ -39,6 +47,14 @@ const PembayaranDonasi = () => {
     const formatNominal = (value) => {
         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     };
+
+    const showToast = (message, type) => {
+        showMessage({
+            message,
+            type: type === 'success' ? 'success' : 'danger',
+            backgroundColor: type === 'success' ? '#1ABC9C' : '#D9435E',
+        })
+    }
 
     return (
         <KeyboardAvoidingView
@@ -103,7 +119,7 @@ const PembayaranDonasi = () => {
         )
 }
 
-export default PembayaranDonasi
+export default RingkasanDonasi
 
 const styles = StyleSheet.create({
     container:{

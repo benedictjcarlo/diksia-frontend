@@ -11,11 +11,14 @@ const SelectKondisi = ({label, onSelectChange}) => {
         <Gap height={12}/>
         <View style={styles.input}>
             <Picker
+            style={{ color: '#212121' }} 
             selectedValue={selectedValue}
             onValueChange={(itemValue) => {
                 onSelectChange(itemValue)
                 setSelectedValue(itemValue)
             }}
+            color="#212121"
+            backgroundColor= "#FFF"
             >
             <Picker.Item label="Baru" value="Baru" />
             <Picker.Item label="Layak Pakai" value="Layak Pakai" />

@@ -5,12 +5,17 @@ import { Button, DetailHeader, Gap, TextSpanCard } from '../../components'
 import axios from 'axios'
 import { getData } from '../../utils'
 import { API_HOST } from '../../config'
+import { useDispatch } from 'react-redux'
+import { setLoading } from '../../redux/action'
+import { showMessage } from 'react-native-flash-message'
 
 const RingkasanPengiriman = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const {data} = route.params
     const {gadget, shipment, userProfile} = data;
+
+    const dispatch = useDispatch();
 
     const onShipment = () => {
         const newData = {
@@ -37,8 +42,23 @@ const RingkasanPengiriman = () => {
                 navigation.replace('TerimakasihDonasiGadget')
             })
             .catch(err => {
-                console.log('shipment gagal: ', err.response)
+                dispatch(setLoading(false))
+                const errors = err.response.data.errors
+                if (errors.resi) showToast('Nomor Resi Harus Diisi')
+                if (errors.kurir) showToast('Kurir Harus Diisi')
+                if (errors.kendala) showToast('Kendala Gadget Harus Diisi')
+                if (errors.merk) showToast('Merk Gadget Harus Diisi')
+                if (errors.kondisi) showToast('Kondisi Gadget Harus Diisi')
+                if (errors.jenis) showToast('Jenis Gadget Harus Diisi')
             })
+        })
+    }
+
+    const showToast = (message, type) => {
+        showMessage({
+            message,
+            type: type === 'success' ? 'success' : 'danger',
+            backgroundColor: type === 'success' ? '#1ABC9C' : '#D9435E',
         })
     }
 
@@ -112,7 +132,7 @@ const RingkasanPengiriman = () => {
                 </View>
                 <View style={styles.footerButton}>
                 <Button
-                    text="Lanjutkan Pembayaran" 
+                    text="Kirim Gadget" 
                     bgColor='#4485B7' 
                     color='#FFF'
                     brColor='#4485B7' 

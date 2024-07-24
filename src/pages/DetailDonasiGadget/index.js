@@ -41,7 +41,16 @@ const DetailDonasiGadget = ({navigation, route}) => {
                     brColor='#4485B7'
                     fontSize={12}
                     fontWeight={'bold'}
-                    onPress={() => navigation.navigate('CeritaPenggalangan', {picturePath, description, formattedDate})}/>
+                    onPress={() => navigation.navigate('CeritaPenggalangan', {
+                        description,
+                        formattedDate,
+                        id,
+                        title,
+                        picturePath,
+                        deadline,
+                        types,
+                    })
+                }/>
                 </View>
                 <Gap height={24}/>
                 <DetailDonasiKabar />

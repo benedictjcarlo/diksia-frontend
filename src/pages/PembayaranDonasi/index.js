@@ -47,7 +47,7 @@ const PembayaranDonasi = () => {
 
   const handleNominalChange = (value) => {
     const numericText = value.replace(/[^0-9]/g, '');
-    setNominal(numericText); // store the numeric value
+    setNominal(numericText);
     setFormattedNominal(numericText.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'));
   };
   
@@ -141,11 +141,6 @@ const PembayaranDonasi = () => {
             types={types}
             logo={getLogo(metodePembayaran)}
           />
-          <Gap height={12}/>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between',alignItems: 'center'}}>
-            <Text style={styles.anonim}>Donasi sebagai Anonim (nama anda akan disembunyikan)</Text>
-            <Switch />
-          </View>
         </View>
         <View style={styles.footerButton}>
           <Button

@@ -97,18 +97,18 @@ const EditAkun = ({navigation}) => {
                 <Gap height={12}/>
                 <Text style={styles.title}>Email</Text>
                 <Gap height={6}/>
-                <View style={styles.inputContainer}>
+                <View style={styles.fixedInputContainer}>
                     <TextInput 
                     defaultValue={userProfile.email} 
-                    onChangeText={(text) => setUpdatedUserProfile({ ...updatedUserProfile, email: text })}
-                    style={styles.input}
+                    style={styles.fixedInput}
+                    editable={false}
                     />
                 </View>
                 <Gap height={12}/>
                 <Text style={styles.title}>Tanggal Lahir</Text>
                 <Gap height={6}/>
                 <View style={styles.dateInputContainer}>
-                    <DateBirth onDateChange={handleDateChange}/>
+                    <DateBirth onDateChange={handleDateChange} defaultValue={userProfile.birthDate} />
                 </View>
                 <Gap height={12}/>
                 <Text style={styles.title}>Nomor Telepon</Text>
@@ -118,6 +118,7 @@ const EditAkun = ({navigation}) => {
                     defaultValue={userProfile.phoneNumber} 
                     onChangeText={(text) => setUpdatedUserProfile({ ...updatedUserProfile, phoneNumber: text })}
                     style={styles.input}
+                    keyboardType='number-pad'
                     />
                 </View>
             </View>
@@ -226,6 +227,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 20,
         borderRadius: 6,
+        backgroundColor: '#FFF'
     },
 
 })

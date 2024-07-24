@@ -41,7 +41,7 @@ const PengirimanGadget = ({navigation}) => {
             shipment: {
                 ...form,
                 amount: 1,
-                status: 'Diterima'
+                status: 'Diterima',
             },
             userProfile
         }
@@ -113,6 +113,7 @@ const PengirimanGadget = ({navigation}) => {
                 label={"Nomor Resi"}
                 placeholder={"Masukkan nomor resi pengiriman gadget"}
                 value={form.resi}
+                keyboardType='number-pad'
                 onChangeText={(value) => setForm('resi', value)}/>
             </ScrollView>
             <View style={styles.footerButton}>
