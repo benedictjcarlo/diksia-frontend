@@ -1,13 +1,13 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
-import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, View, Image } from 'react-native'
-import { Button, DetailHeader, Gap, TextSpanCard } from '../../components'
 import axios from 'axios'
-import { getData } from '../../utils'
-import { API_HOST } from '../../config'
-import { useDispatch } from 'react-redux'
-import { setLoading } from '../../redux/action'
+import React from 'react'
+import { Image, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
 import { showMessage } from 'react-native-flash-message'
+import { useDispatch } from 'react-redux'
+import { Button, DetailHeader, Gap, TextSpanCard } from '../../components'
+import { API_HOST } from '../../config'
+import { setLoading } from '../../redux/action'
+import { getData } from '../../utils'
 
 const RingkasanPengiriman = () => {
     const navigation = useNavigation();

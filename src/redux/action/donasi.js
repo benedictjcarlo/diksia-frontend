@@ -28,7 +28,6 @@ export const getAktivitas = () => (dispatch) => {
             const failed = res2.data.data.data
             const received = res3.data.data.data
             dispatch({type: 'SET_AKTIVITAS', value: [...success, ...failed, ...received],
-
             })
         })
         )

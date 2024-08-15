@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const TagStatus = ({text, status}) => {
+const TagStatus = ({status}) => {
   return (
     <View style={styles.container(status)}>
-        <Text style={styles.title(status)}>{text}</Text>
+        <Text style={styles.title(status)}>{status}</Text>
     </View>
   )
 }
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto',
         backgroundColor: '#FFF',
         borderWidth: 2,
-        borderColor: status === 'FAILED' ? '#FF3030' : '#4485B7',
+        borderColor: status === 'Gagal' ? '#FF3030' : '#4485B7',
         borderRadius:20,
         padding: 4,
         width: 80,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 
     title: (status) => ({
         fontWeight: 'bold',
-        color: status === 'FAILED' ? '#FF3030' : '#4485B7',
+        color: status === 'Gagal' ? '#FF3030' : '#4485B7',
         fontSize: 10,
     }),
 })

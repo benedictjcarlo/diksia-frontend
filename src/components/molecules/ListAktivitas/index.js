@@ -19,7 +19,6 @@ const ListAktivitas = ({title, image, status, createdAt, amount}) => {
                     <Text style={styles.text}>Rp {formatNominal(amount)}</Text>}
                     
                     <TagStatus
-                        text={status}
                         status={status}
                     />
                 </View>
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        fontSize: 12,
+        fontSize: 10,
         color: '#212121',
         fontWeight: 'bold'
     },

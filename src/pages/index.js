@@ -29,6 +29,7 @@ import UbahKataSandi from "./UbahKataSandi"
 import Bantuan from "./Bantuan"
 import SyaratKetentuan from "./SyaratKetentuan"
 import TentangDiksia from "./TentangDiksia"
+import VerifyEmail from "./VerifyEmail"
 
 export {
     SplashScreen,
@@ -62,5 +63,5 @@ export {
     Bantuan,
     SyaratKetentuan,
     TentangDiksia,
-    
+    VerifyEmail,
 }

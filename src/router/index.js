@@ -31,6 +31,8 @@ import {
     Bantuan,
     SyaratKetentuan,
     TentangDiksia,
+    VerifyEmail,
+
 
 } from '../pages';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -233,6 +235,12 @@ const Router = () => {
             <Stack.Screen 
             name="TentangDiksia" 
             component={TentangDiksia}
+            options={{headerShown: false}}
+            />
+            
+            <Stack.Screen 
+            name="VerifyEmail" 
+            component={VerifyEmail}
             options={{headerShown: false}}
             />
 
